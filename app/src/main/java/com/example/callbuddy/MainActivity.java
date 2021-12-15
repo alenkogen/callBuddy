@@ -24,6 +24,17 @@ public class MainActivity extends AppCompatActivity {
     Button smser2;
     Button camerer;
     Button mailer;
+    String num="0525237375";
+    String text="Mammy i pooped m'pants";
+    FragmentManager fragmentManager;
+
+    public void setNum(String num) {
+        this.num = num;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -38,12 +49,14 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case  R.id.item1:
                 Toast.makeText(MainActivity.this,"Boxing selcted",Toast.LENGTH_LONG).show();
-                FragmentManager fragmentManager = getSupportFragmentManager();
+                fragmentManager = getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.fragmentContainerView2, change_call_number.class, null).
                         setReorderingAllowed(true).addToBackStack(null).commit();
                 break;
             case R.id.subItem1:
                 Toast.makeText(MainActivity.this,"Beer1 selcted",Toast.LENGTH_LONG).show();
+                fragmentManager = getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.fragmentContainerView2, BlankFragment.class, null).setReorderingAllowed(true).addToBackStack(null).commit();
                 break;
             case R.id.subItem2:
                 Toast.makeText(MainActivity.this,"Beer2 selcted",Toast.LENGTH_LONG).show();
@@ -104,8 +117,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sms2() {
-        String num="0525237375";
-        String text="Mammy i pooped m'pants";
+
         SmsManager smsManager=SmsManager.getDefault();
         smsManager.sendTextMessage(num,null,text,null,null);
         Toast.makeText(MainActivity.this,"Message Send",Toast.LENGTH_LONG).show();
